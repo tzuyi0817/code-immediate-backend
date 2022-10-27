@@ -1,10 +1,11 @@
 import express from 'express';
 import { urlencoded, json } from 'body-parser';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { userRouter } from './routes/user';
+import { userRouter, codeRouter } from './routes';
 import passport from './config/passport';
 
 const port = 3000;
@@ -12,7 +13,9 @@ const app = express();
 
 app.use(urlencoded({ extended: false }));
 app.use(json());
+app.use(cors());
 app.use(userRouter);
+app.use(codeRouter);
 app.use(passport.initialize());
 app.use(passport.session());
 

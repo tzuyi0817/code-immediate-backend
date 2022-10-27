@@ -4,10 +4,6 @@ import passportJWT from 'passport-jwt';
 import bcrypt from 'bcryptjs';
 import { User } from '../models/user';
 
-interface User {
-  id?: number;
-}
-
 const LocalStrategy = passportLocal.Strategy;
 const { Strategy: JwtStrategy, ExtractJwt } = passportJWT;
 const jwtOptions = {
@@ -36,7 +32,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.use(new JwtStrategy(jwtOptions, (jwt_payload, done) => {
-  User.findById(jwt_payload.id, (err: Error, user: User) => {
+  User.findById(jwt_payload.id, (err: Error, user: Express.User) => {
     if (err) return done(null, false, { message: 'account or password incorrect' });
     return user
       ? done(null, user)
@@ -44,12 +40,12 @@ passport.use(new JwtStrategy(jwtOptions, (jwt_payload, done) => {
   });
 }));
 
-passport.serializeUser((user: User, done) => {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err: Error, user: User) => {
+  User.findById(id, (err: Error, user: Express.User) => {
     done(err, user);
   });
 });
