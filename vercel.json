@@ -1,9 +1,10 @@
 {
   "version": 2,
+  "name": "code_immediate-backend",
   "builds": [
     {
       "src": "app.ts",
-      "use": "@now/node"
+      "use": "@vercel/node"
     }
   ],
   "routes": [
