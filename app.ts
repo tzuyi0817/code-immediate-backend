@@ -20,10 +20,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(userRouter);
-app.use(codeRouter);
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(userRouter);
+app.use(codeRouter);
 
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost/code-immediate')
