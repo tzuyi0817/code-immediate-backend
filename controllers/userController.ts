@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from '../models/user';
+import { ERROR_MAP, ErrorKey } from '../config/error';
 
 const userController = {
   async login(req: Request, res: Response) {
@@ -17,14 +18,12 @@ const userController = {
     
     if (!bcrypt.compareSync(password, user.password))
       return res.status(400).json({ status: 'error', message: 'Incorrect password' });
-  
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!);
 
     return res.json({
       status: 'success',
       message: 'login success',
       resultMap: {
-        token,
+        token: jwt.sign({ id: user.id }, process.env.JWT_SECRET!),
         user: {
           id: user.id,
           account: user.account,
@@ -48,13 +47,32 @@ const userController = {
 
     newUser
       .save()
-      .then(() => res.json({ status: 'success', message: 'register success' }))
-      .catch(error => res.status(400).json({ status: 'error', message: error.message }));
+      .then(async () => {
+        const user = await User.findOne({ account });
+
+        return res.json({
+          status: 'success',
+          message: 'register success',
+          resultMap: {
+            token: jwt.sign({ id: user!.id }, process.env.JWT_SECRET!),
+            user: {
+              id: user!.id,
+              account: user!.account,
+            },
+          },
+        })
+      })
+      .catch(error => {
+        return res.status(400).json({
+          status: 'error',
+          message: ERROR_MAP[error.code as ErrorKey] ?? error.message,
+        });
+      });
   },
   logout(req: Request, res: Response) {
     req.logout((error) => {
       return error
-        ? res.status(400).json({ status: 'error', message: error.message })
+        ? res.status(400).json({ status: 'error', message: ERROR_MAP[error.code as ErrorKey] ?? error.message })
         : res.json({ status: 'success', message: 'successfully logout' })
     });
   }
