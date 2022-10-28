@@ -1,6 +1,7 @@
 import type { Types } from 'mongoose';
 
 export interface ICode {
+  title: string;
   HTML: CodeMap;
   CSS: CodeMap;
   JS: CodeMap;

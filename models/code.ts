@@ -14,6 +14,10 @@ const codeMapSchema = new Schema<CodeMap>({
 }, { _id : false });
 
 const codeSchema = new Schema<ICode>({
+  title: {
+    type: String,
+    required: true,
+  },
   HTML: {
     type: codeMapSchema,
     required: true,
@@ -44,7 +48,7 @@ const codeSchema = new Schema<ICode>({
     index: true,
     required: true,
   }
-});
+}, { timestamps: true });
 
 const Code = model<ICode>('Code', codeSchema);
 
