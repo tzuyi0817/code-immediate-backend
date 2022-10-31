@@ -47,17 +47,15 @@ const userController = {
 
     newUser
       .save()
-      .then(async () => {
-        const user = await User.findOne({ account });
-
+      .then(user => {
         return res.json({
           status: 'success',
           message: 'register success',
           resultMap: {
-            token: jwt.sign({ id: user!.id }, process.env.JWT_SECRET!),
+            token: jwt.sign({ id: user.id }, process.env.JWT_SECRET!),
             user: {
-              id: user!.id,
-              account: user!.account,
+              id: user.id,
+              account: user.account,
             },
           },
         })

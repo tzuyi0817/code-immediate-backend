@@ -42,8 +42,23 @@ const codeController = {
 
     code
       .save()
-      .then(() => res.json({ status: 'success', message: 'saved successfully' }))
+      .then(code => {
+        return res.json({
+          status: 'success',
+          message: 'saved successfully',
+          resultMap: { code },
+        })
+      })
       .catch(error => res.status(400).json({ status: 'error', message: error.message }));
+  },
+  async updateCode(req: Request, res: Response) {
+    const code = JSON.parse(req.body.codeContent);
+
+    await Code
+      .findOneAndUpdate({ _id: req.params.id, userId: req.user?.id }, code, { upsert: true })
+      .catch(error => res.status(400).json({ status: 'error', message: error.message }));
+    
+    return res.json({ status: 'success', message: 'updated successfully' });
   },
 };
 
