@@ -31,7 +31,7 @@ const codeController = {
   },
   async getCode(req: Request, res: Response) {
     const code = await Code
-      .findOne({ id: req.params.id, userId: req.user?.id })
+      .findOne({ _id: req.params.id, userId: req.user?.id })
       .catch(error => res.status(400).json({ status: 'error', message: error.message }));
 
     return res.json({ status: 'success', message: 'success', resultMap: { code } });
