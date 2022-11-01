@@ -13,8 +13,8 @@ const codeController = {
         if (error)
           return res.status(400).json({ status: 'error', message: error });
         
-        const data = codeList.map(({ _id, HTML, CSS, JS, VUE, codeTemplate, importMap }) => {
-          return { id: _id, HTML, CSS, JS, VUE, codeTemplate, importMap };
+        const data = codeList.map(({ _id, HTML, CSS, JS, VUE, codeTemplate, importMap, title }) => {
+          return { id: _id, title, HTML, CSS, JS, VUE, codeTemplate, importMap };
         });
 
         return res.json({
