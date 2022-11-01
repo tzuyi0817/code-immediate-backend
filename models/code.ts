@@ -38,10 +38,6 @@ const codeSchema = new Schema<ICode>({
     type: String,
     required: true,
   },
-  importMap: {
-    type: Schema.Types.Mixed,
-    default: '',
-  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
