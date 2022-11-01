@@ -9,13 +9,14 @@ const codeController = {
 
     Code
       .find({ userId: req.user?.id }, null, { skip, limit })
-      .exec((error, codeList) => {
+      .exec(async (error, codeList) => {
         if (error)
           return res.status(400).json({ status: 'error', message: error });
         
         const data = codeList.map(({ _id, HTML, CSS, JS, VUE, codeTemplate, title }) => {
           return { id: _id, title, HTML, CSS, JS, VUE, codeTemplate };
         });
+        const totalSize = await Code.estimatedDocumentCount();
 
         return res.json({
           status: 'success',
@@ -23,8 +24,8 @@ const codeController = {
           resultMap: {
             codeList: data,
             page,
-            totalPage: Math.ceil(codeList.length / limit),
-            total: codeList.length,
+            totalPage: Math.ceil(totalSize / limit),
+            totalSize,
           }
         });
       });
@@ -60,6 +61,13 @@ const codeController = {
     
     return res.json({ status: 'success', message: 'updated successfully' });
   },
+  async deleteCode(req: Request, res: Response) {
+    await Code
+      .findOneAndDelete({ _id: req.params.id, userId: req.user?.id })
+      .catch(error => res.status(400).json({ status: 'error', message: error.message }));
+    
+    return res.json({ status: 'success', message: 'deleted successfully' });
+  }
 };
 
 export default codeController;
