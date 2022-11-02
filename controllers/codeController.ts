@@ -16,7 +16,7 @@ const codeController = {
         const data = codeList.map(({ _id, HTML, CSS, JS, VUE, codeTemplate, title }) => {
           return { id: _id, title, HTML, CSS, JS, VUE, codeTemplate };
         });
-        const totalSize = await Code.estimatedDocumentCount();
+        const totalSize = await Code.countDocuments({ userId: req.user?.id });
 
         return res.json({
           status: 'success',
