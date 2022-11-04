@@ -1,13 +1,5 @@
 import { Schema, model } from "mongoose";
 
-declare global {
-  namespace Express {
-    interface User {
-      id: string;
-    }
-  }
-}
-
 interface IUser {
   account: string;
   password: string;

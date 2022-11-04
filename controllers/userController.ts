@@ -13,11 +13,8 @@ const userController = {
     
     const user = await User.findOne({ account });
 
-    if (!user)
-      return res.status(400).json({ status: 'error', message: 'Could not find this user' });
-    
-    if (!bcrypt.compareSync(password, user.password))
-      return res.status(400).json({ status: 'error', message: 'Incorrect password' });
+    if (!user || !bcrypt.compareSync(password, user.password))
+      return res.status(400).json({ status: 'error', message: 'Incorrect account or password' });
 
     return res.json({
       status: 'success',
