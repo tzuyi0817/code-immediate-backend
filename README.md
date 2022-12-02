@@ -17,6 +17,8 @@ This is an api of the code immediate backend, the database uses MonogoDB.
 | Method     | URI                               | Action                                                  |
 |------------|-----------------------------------|---------------------------------------------------------|
 | `POST`     | `api/login`                       | `controllers\userController@login`                      |
+| `GET`      | `api/github`                      | `auth redirect`                                         |
+| `GET`      | `api/github/callback`             | `controllers\userController@github`                     |
 | `POST`     | `api/register`                    | `controllers\userController@register`                   |
 | `POST`     | `api/logout`                      | `controllers\userController@logout`                     |
 

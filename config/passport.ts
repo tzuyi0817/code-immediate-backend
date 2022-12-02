@@ -1,14 +1,17 @@
 import passport from 'passport';
 import passportLocal from 'passport-local';
 import passportJWT from 'passport-jwt';
+import passportGithub from 'passport-github';
 import bcrypt from 'bcryptjs';
 import { User } from '../models/user';
 
 const LocalStrategy = passportLocal.Strategy;
 const { Strategy: JwtStrategy, ExtractJwt } = passportJWT;
+const GithubStrategy = passportGithub.Strategy;
+const { JWT_SECRET, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_CLIENT_CALLBACK } = process.env;
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET,
+  secretOrKey: JWT_SECRET,
 };
 
 passport.use(new LocalStrategy(
@@ -39,6 +42,15 @@ passport.use(new JwtStrategy(jwtOptions, (jwt_payload, done) => {
       : done(null, false, { message: 'This account is not registered' });
   });
 }));
+
+passport.use(new GithubStrategy(
+  {
+    clientID: GITHUB_CLIENT_ID!,
+    clientSecret: GITHUB_CLIENT_SECRET!,
+    callbackURL: GITHUB_CLIENT_CALLBACK,
+  },
+  (accessToken, refreshToken, profile, cb) => cb(null, profile)
+));
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

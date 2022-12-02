@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from '../models/user';
 import { ERROR_MAP, ErrorKey } from '../config/error';
+import { generateAuthUrl } from '../utils/generateAuthUrl';
 
 const userController = {
   async login(req: Request, res: Response) {
@@ -23,7 +24,7 @@ const userController = {
         token: jwt.sign({ id: user.id }, process.env.JWT_SECRET!),
         user: {
           id: user.id,
-          account: user.account,
+          account: user.account.replace('_GITHUB_AUTH', ''),
         },
       },
     });
@@ -69,6 +70,30 @@ const userController = {
       return error
         ? res.status(400).json({ status: 'error', message: ERROR_MAP[error.code as ErrorKey] ?? error.message })
         : res.json({ status: 'success', message: 'successfully logout' })
+    });
+  },
+  async github(req: Request, res: Response) {
+    if (!req.user) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'account or password incorrect',
+      });
+    }
+    const { username } = req.user;
+    const account = `${username}_GITHUB_AUTH`;
+    const user = await User.findOne({ account });
+
+    if (user) return res.redirect(generateAuthUrl(user));
+  
+    const randomPassword = Math.random().toString(36).slice(-8);
+
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(randomPassword, salt, async (err, hash) => {
+        const newUser = new User({ account, password: hash });
+        const user = await newUser.save();
+
+        res.redirect(generateAuthUrl(user));
+      })
     });
   }
 };
