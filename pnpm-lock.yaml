@@ -8,6 +8,7 @@ specifiers:
   '@types/express-session': ^1.17.5
   '@types/jsonwebtoken': ^8.5.9
   '@types/mongoose': ^5.11.97
+  '@types/node': ^18.11.10
   '@types/passport': ^1.0.11
   '@types/passport-github': ^1.1.7
   '@types/passport-jwt': ^3.0.7
@@ -50,12 +51,13 @@ devDependencies:
   '@types/express-session': 1.17.5
   '@types/jsonwebtoken': 8.5.9
   '@types/mongoose': 5.11.97
+  '@types/node': 18.11.10
   '@types/passport': 1.0.11
   '@types/passport-github': 1.1.7
   '@types/passport-jwt': 3.0.7
   '@types/passport-local': 1.0.34
   '@vercel/node': 2.5.26
-  ts-node-dev: 2.0.0_typescript@4.8.4
+  ts-node-dev: 2.0.0_tqjxwsrbrthhtfy6omehzgz7kq
   typescript: 4.8.4
 
 packages:
@@ -842,13 +844,13 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
     dev: true
 
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
     dev: true
 
   /@types/cors/2.8.12:
@@ -858,7 +860,7 @@ packages:
   /@types/express-serve-static-core/4.17.31:
     resolution: {integrity: sha512-DxMhY+NAsTwMMFHBTtJFNp5qiHKJ7TeqOo23zVEM9alT1Ml27Q3xcTH0xwxn7Q0BbMcVEJOs/7aQtUWupUQN3Q==}
     dependencies:
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
     dev: true
@@ -885,7 +887,7 @@ packages:
   /@types/jsonwebtoken/8.5.9:
     resolution: {integrity: sha512-272FMnFGzAVMGtu9tkr29hRL6bZj4Zs1KZNeHLnKqAvp06tAIcarTMwOh8/8bz4FmKRcMxZhZNeUAQsNLoiPhg==}
     dependencies:
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
     dev: true
 
   /@types/mime/3.0.1:
@@ -902,13 +904,13 @@ packages:
       - supports-color
     dev: true
 
-  /@types/node/18.11.5:
-    resolution: {integrity: sha512-3JRwhbjI+cHLAkUorhf8RnqUbFXajvzX4q6fMn5JwkgtuwfYtRQYI3u4V92vI6NJuTsbBQWWh3RZjFsuevyMGQ==}
+  /@types/node/18.11.10:
+    resolution: {integrity: sha512-juG3RWMBOqcOuXC643OAdSA525V44cVgGV6dUDuiFtss+8Fk5x1hI93Rsld43VeJVIeqlP9I7Fn9/qaVqoEAuQ==}
 
   /@types/oauth/0.9.1:
     resolution: {integrity: sha512-a1iY62/a3yhZ7qH7cNUsxoI3U/0Fe9+RnuFrpTKr+0WVOzbKlSLojShCKe20aOD1Sppv+i8Zlq0pLDuTJnwS4A==}
     dependencies:
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
     dev: true
 
   /@types/passport-github/1.1.7:
@@ -968,7 +970,7 @@ packages:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
     dev: true
 
   /@types/strip-bom/3.0.0:
@@ -985,7 +987,7 @@ packages:
   /@types/whatwg-url/8.2.2:
     resolution: {integrity: sha512-FtQu10RWgn3D9U4aazdwIE2yzphmTJREDqNdODHrbrZmmMqI0vMheC/6NE/J1Yveaj8H+ela+YwWTjq5PGmuhA==}
     dependencies:
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
       '@types/webidl-conversions': 7.0.0
 
   /@vercel/build-utils/5.5.5:
@@ -1000,7 +1002,7 @@ packages:
     resolution: {integrity: sha512-Kj3dXBwpttUB7XG5joXKIBDtkow71678NHhfpp1a7S/50U9n5R2ztsJKMPpQ1m7HgEkMezQt2YO5E+39c2jkug==}
     dependencies:
       '@edge-runtime/vm': 1.1.0-beta.37
-      '@types/node': 18.11.5
+      '@types/node': 18.11.10
       '@vercel/build-utils': 5.5.5
       '@vercel/node-bridge': 3.0.0
       '@vercel/static-config': 2.0.3
@@ -2368,7 +2370,7 @@ packages:
       code-block-writer: 10.1.1
     dev: true
 
-  /ts-node-dev/2.0.0_typescript@4.8.4:
+  /ts-node-dev/2.0.0_tqjxwsrbrthhtfy6omehzgz7kq:
     resolution: {integrity: sha512-ywMrhCfH6M75yftYvrvNarLEY+SUXtUvU8/0Z6llrHQVBx12GiFk5sStF8UdfE/yfzk9IAq7O5EEbTQsxlBI8w==}
     engines: {node: '>=0.8.0'}
     hasBin: true
@@ -2387,7 +2389,7 @@ packages:
       rimraf: 2.7.1
       source-map-support: 0.5.21
       tree-kill: 1.2.2
-      ts-node: 10.9.1_typescript@4.8.4
+      ts-node: 10.9.1_tqjxwsrbrthhtfy6omehzgz7kq
       tsconfig: 7.0.0
       typescript: 4.8.4
     transitivePeerDependencies:
@@ -2396,7 +2398,7 @@ packages:
       - '@types/node'
     dev: true
 
-  /ts-node/10.9.1_typescript@4.8.4:
+  /ts-node/10.9.1_tqjxwsrbrthhtfy6omehzgz7kq:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -2415,6 +2417,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
+      '@types/node': 18.11.10
       acorn: 8.8.1
       acorn-walk: 8.2.0
       arg: 4.1.3
